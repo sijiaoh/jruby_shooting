@@ -19,6 +19,9 @@ Style/Documentation:
 Style/EndOfLine:
   Enabled: false
 
+Naming/MethodParameterName:
+  MinNameLength: 1
+
 Metrics/BlockLength:
   Exclude:
     - spec/**/*.rb
