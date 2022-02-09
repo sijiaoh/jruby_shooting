@@ -1,7 +1,7 @@
 java_import com.badlogic.gdx.Game
 java_import com.badlogic.gdx.utils.ScreenUtils
-java_import com.badlogic.gdx.backends.lwjgl.LwjglApplication
-java_import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration
+java_import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
+java_import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
 
 class Application < Game
   class << self
@@ -9,7 +9,7 @@ class Application < Game
 
     def run(scene)
       self.current_scene = scene
-      LwjglApplication.new(Application.new, LwjglApplicationConfiguration.new)
+      Lwjgl3Application.new(Application.new, Lwjgl3ApplicationConfiguration.new)
     end
   end
 
