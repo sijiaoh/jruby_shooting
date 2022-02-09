@@ -1,5 +1,5 @@
 class MainScene < Scene
-  def render(_delta)
+  def draw
     Font.draw "hello world", 100, 100
   end
 end

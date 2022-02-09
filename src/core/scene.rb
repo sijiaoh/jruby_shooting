@@ -19,5 +19,20 @@ class Scene
     INTERFACE_METHODS.include? sym
   end
 
-  def update; end
+  def render(delta)
+    update(delta)
+
+    ScreenUtils.clear(0, 0, 0, 1)
+    Batch.begin
+    draw
+    Batch.end
+  end
+
+  def update(delta); end
+
+  def draw; end
+
+  def to_current
+    Application.change_scene self
+  end
 end
