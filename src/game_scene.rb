@@ -1,4 +1,4 @@
-class MainScene < Scene
+class GameScene < Scene
   def draw
     Font.draw "hello world", 100, 100
   end
