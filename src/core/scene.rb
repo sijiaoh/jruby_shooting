@@ -2,7 +2,7 @@ class Scene
   java_implements com.badlogic.gdx.Screen
 
   %i[dispose hide pause resume show].each do |method|
-    define_method(method) {}
+    define_method(method) {} # Do nothing.
   end
 
   def resize(width, height); end
