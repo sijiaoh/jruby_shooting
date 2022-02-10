@@ -20,7 +20,9 @@ class Scene
   end
 
   def render(delta)
-    update(delta)
+    Time.delta = delta
+
+    update
 
     ScreenUtils.clear(0, 0, 0, 1)
     Batch.begin
@@ -28,7 +30,7 @@ class Scene
     Batch.end
   end
 
-  def update(delta); end
+  def update; end
 
   def draw; end
 
