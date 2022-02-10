@@ -10,6 +10,11 @@ class GameObject
     Scene.current&.add_game_object self
   end
 
+  COMPONENT_LIFECYCLES = %i[create update draw dispose].freeze
+  COMPONENT_LIFECYCLES.each do |f|
+    define_method(f) { components.each { |c| c.send f } }
+  end
+
   def position
     parent.position + local_position
   end
@@ -47,12 +52,5 @@ class GameObject
     components.each(&:dispose)
     self.parent = nil
     Scene.current&.remove_game_object self
-  end
-
-  COMPONENT_LIFECYCLES = %i[create update draw].freeze
-  COMPONENT_LIFECYCLES.each do |f|
-    define_method f do
-      components.each { |c| c.send f }
-    end
   end
 end
