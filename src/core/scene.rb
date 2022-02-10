@@ -1,23 +1,11 @@
 class Scene
   java_implements com.badlogic.gdx.Screen
 
-  INTERFACE_METHODS = %i[
-    dispose
-    hide
-    pause
-    render
-    resize
-    resume
-    show
-  ].freeze
-
-  def method_missing(name, *args, &block)
-    super(name, *args, &block) if INTERFACE_METHODS.exclude? name.to_sym
+  %i[dispose hide pause resume show].each do |method|
+    define_method(method) {}
   end
 
-  def respond_to_missing?(sym, _include_private)
-    INTERFACE_METHODS.include? sym
-  end
+  def resize(width, height); end
 
   def render(delta)
     Time.delta = delta
