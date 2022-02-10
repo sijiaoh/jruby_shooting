@@ -6,6 +6,7 @@ class GameObject
   end
 
   def add_component(component)
+    component.game_object = self
     components << component
   end
 
