@@ -1,3 +1,5 @@
+require "./src/core"
+
 describe Vector do
   describe "operators" do
     let(:a) { described_class.new 1, 2 }

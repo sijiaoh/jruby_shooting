@@ -39,4 +39,9 @@ class Scene
   def to_current
     Application.change_scene self
   end
+
+  def update
+    game_objects.each { |game_object| game_object.create unless game_object.created? }
+    game_objects.each(&:update)
+  end
 end

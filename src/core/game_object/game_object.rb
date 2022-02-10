@@ -55,9 +55,22 @@ class GameObject
     component.game_object = nil
   end
 
+  def created?
+    @created ||= false
+  end
+
+  def disposed?
+    @disposed ||= false
+  end
+
+  def create
+    @created = true
+  end
+
   def dispose
     components.each(&:dispose)
     self.parent = nil
     Scene.current&.remove_game_object self
+    @disposed = true
   end
 end
