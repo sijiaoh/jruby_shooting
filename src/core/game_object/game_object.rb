@@ -17,8 +17,9 @@ class GameObject
   def parent=(value)
     return if parent == value
 
+    @parent&.remove_child self
     @parent = value
-    value.add_child self
+    @parent&.add_child self
   end
 
   def add_child(child)
@@ -26,6 +27,13 @@ class GameObject
 
     children << child
     child.parent = self
+  end
+
+  def remove_child(child)
+    return if children.exclude? child
+
+    children.delete child
+    child.parent = nil
   end
 
   def add_component(component)
@@ -37,6 +45,7 @@ class GameObject
 
   def dispose
     components.each(&:dispose)
+    self.parent = nil
     Scene.current&.remove_game_object self
   end
 

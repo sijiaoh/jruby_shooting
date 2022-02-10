@@ -11,11 +11,10 @@ end
 describe GameObject do
   subject(:game_object) { described_class.new }
 
+  let(:child) { described_class.new }
   let(:test_component) { TestComponent.new }
 
   describe "#parent=" do
-    let(:child) { described_class.new }
-
     it "changes #parent" do
       child.parent = game_object
       expect(child.parent).to eq game_object
@@ -24,6 +23,15 @@ describe GameObject do
     it "changes parent's children" do
       child.parent = game_object
       expect(game_object.children.first).to eq child
+    end
+
+    context "when pass nil" do
+      it "removes self from parent's children" do
+        child.parent = game_object
+        expect do
+          child.parent = nil
+        end.to change { game_object.children.length }.by(-1)
+      end
     end
   end
 
@@ -54,6 +62,15 @@ describe GameObject do
       game_object.add_component test_component
       game_object.create
       expect(test_component.created).to be_truthy
+    end
+  end
+
+  describe "#dispose" do
+    it "removes self from parent's components" do
+      child.parent = game_object
+      expect do
+        child.dispose
+      end.to change { game_object.children.length }.by(-1)
     end
   end
 end
