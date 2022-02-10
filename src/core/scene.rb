@@ -1,8 +1,10 @@
 class Scene
   java_implements com.badlogic.gdx.Screen
 
-  %i[dispose hide pause resume show].each do |method|
-    define_method(method) {} # Do nothing.
+  %i[dispose hide pause resume show update draw].each do |method|
+    define_method(method) do
+      game_objects.each { |go| go.send(method) } if GameObject::COMPONENT_LIFECYCLES.include? method
+    end
   end
 
   def resize(width, height); end
@@ -18,9 +20,17 @@ class Scene
     Batch.end
   end
 
-  def update; end
+  def game_objects
+    @game_objects ||= []
+  end
 
-  def draw; end
+  def add_game_object(game_object)
+    game_objects << game_object
+  end
+
+  def remove_game_object(game_object)
+    game_objects.delete game_object
+  end
 
   def to_current
     Application.change_scene self

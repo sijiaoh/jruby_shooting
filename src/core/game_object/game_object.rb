@@ -7,6 +7,7 @@ class GameObject
     self.local_position = Vector.new
     @children = []
     self.components = []
+    Application.current_scene&.add_game_object self
   end
 
   def position
@@ -32,7 +33,12 @@ class GameObject
     components << component
   end
 
-  COMPONENT_LIFECYCLES = %i[create update draw dispose].freeze
+  def dispose
+    components.each(&:dispose)
+    Application.current_scene&.remove_game_object self
+  end
+
+  COMPONENT_LIFECYCLES = %i[create update draw].freeze
   COMPONENT_LIFECYCLES.each do |f|
     define_method f do
       components.each { |c| c.send f }
