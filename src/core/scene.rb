@@ -1,4 +1,8 @@
 class Scene
+  def self.current
+    Application.current_scene
+  end
+
   java_implements com.badlogic.gdx.Screen
 
   %i[dispose hide pause resume show update draw].each do |method|

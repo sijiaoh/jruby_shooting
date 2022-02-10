@@ -7,7 +7,7 @@ class GameObject
     self.local_position = Vector.new
     @children = []
     self.components = []
-    Application.current_scene&.add_game_object self
+    Scene.current&.add_game_object self
   end
 
   def position
@@ -35,7 +35,7 @@ class GameObject
 
   def dispose
     components.each(&:dispose)
-    Application.current_scene&.remove_game_object self
+    Scene.current&.remove_game_object self
   end
 
   COMPONENT_LIFECYCLES = %i[create update draw].freeze
