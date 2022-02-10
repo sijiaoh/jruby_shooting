@@ -1,12 +1,12 @@
 class GameObject
-  attr_accessor :local_position, :components
+  attr_accessor :local_position
 
-  attr_reader :parent, :children
+  attr_reader :parent, :children, :components
 
   def initialize
     self.local_position = Vector.new
     @children = []
-    self.components = []
+    @components = []
     Scene.current&.add_game_object self
   end
 
@@ -29,8 +29,10 @@ class GameObject
   end
 
   def add_component(component)
-    component.game_object = self
+    return if components.include? component
+
     components << component
+    component.game_object = self
   end
 
   def dispose
