@@ -13,6 +13,34 @@ describe GameObject do
 
   let(:test_component) { TestComponent.new }
 
+  describe "#parent=" do
+    let(:child) { described_class.new }
+
+    it "changes #parent" do
+      child.parent = game_object
+      expect(child.parent).to eq game_object
+    end
+
+    it "changes parent's children" do
+      child.parent = game_object
+      expect(game_object.children.first).to eq child
+    end
+  end
+
+  describe "#add_child" do
+    let(:child) { described_class.new }
+
+    it "adds child to children" do
+      game_object.add_child child
+      expect(game_object.children.first).to eq child
+    end
+
+    it "changes child's parent" do
+      game_object.add_child child
+      expect(child.parent).to eq game_object
+    end
+  end
+
   describe "#add_component" do
     it "adds component to components" do
       expect do
