@@ -48,6 +48,13 @@ class GameObject
     component.game_object = self
   end
 
+  def remove_component(component)
+    return if components.exclude? component
+
+    components.delete component
+    component.game_object = nil
+  end
+
   def dispose
     components.each(&:dispose)
     self.parent = nil
