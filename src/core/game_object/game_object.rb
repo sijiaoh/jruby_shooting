@@ -16,8 +16,11 @@ class GameObject
   end
 
   def position
-    parent_position = parent&.position || Vector.new
     parent_position + local_position
+  end
+
+  def position=(value)
+    self.local_position = value - parent_position
   end
 
   def parent=(value)
@@ -78,5 +81,11 @@ class GameObject
     self.parent = nil
     Scene.current&.remove_game_object self
     @disposed = true
+  end
+
+  private
+
+  def parent_position
+    parent&.position || Vector.new
   end
 end

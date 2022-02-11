@@ -1,11 +1,6 @@
 require "./src/core"
 
 class TestComponent < Component
-  attr_accessor :created
-
-  def create
-    self.created = true
-  end
 end
 
 describe GameObject do
@@ -57,11 +52,11 @@ describe GameObject do
     end
   end
 
-  describe "#create" do
+  describe "#update" do
     it "calls components create" do
       game_object.add_component test_component
-      game_object.create
-      expect(test_component.created).to be_truthy
+      game_object.update
+      expect(test_component).to be_created
     end
   end
 
@@ -71,6 +66,15 @@ describe GameObject do
       expect do
         child.dispose
       end.to change { game_object.children.length }.by(-1)
+    end
+  end
+
+  describe "position=" do
+    it "sets correct value to local_position" do
+      child.parent = game_object
+      game_object.position = Vector.new 1, 2
+      child.position = Vector.new 3, 4
+      expect({ x: child.local_position.x, y: child.local_position.y }).to eq x: 2, y: 2
     end
   end
 end

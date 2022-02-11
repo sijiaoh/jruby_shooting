@@ -8,13 +8,13 @@ class PlayerMove < Component
 
   def update # rubocop:disable Metrics/AbcSize
     super
-    position = game_object.local_position
+    position = game_object.position
 
     position.y -= speed * Time.delta if Gdx::Gdx.input.isKeyPressed(Gdx::Input::Keys::W)
     position.y += speed * Time.delta if Gdx::Gdx.input.isKeyPressed(Gdx::Input::Keys::S)
     position.x -= speed * Time.delta if Gdx::Gdx.input.isKeyPressed(Gdx::Input::Keys::A)
     position.x += speed * Time.delta if Gdx::Gdx.input.isKeyPressed(Gdx::Input::Keys::D)
 
-    game_object.local_position = position
+    game_object.position = position
   end
 end
