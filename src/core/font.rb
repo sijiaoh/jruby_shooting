@@ -1,10 +1,10 @@
 class Font
   class << self
-    attr_accessor :font, :generator
+    attr_accessor :original, :generator
 
-    def draw(str, x, y, scale = 1)
-      font.get_data.set_scale scale * 0.05
-      font.draw Batch.batch, str, x, y
+    def draw(str, position, scale = 1)
+      original.get_data.set_scale scale * 0.05
+      original.draw Batch.batch, str, position.x, position.y
     end
 
     def create
@@ -15,12 +15,12 @@ class Font
       param.characters = File.read("./assets/fonts/japanese-full.txt", encoding: Encoding::UTF_8)
       param.flip = true
 
-      self.font = generator.generate_font param
-      font.set_use_integer_positions false
+      self.original = generator.generate_font param
+      original.set_use_integer_positions false
     end
 
     def dispose
-      font.dispose
+      original.dispose
       generator.dispose
     end
   end

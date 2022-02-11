@@ -6,6 +6,6 @@ class MenuScene < Scene
 
   def draw
     super
-    Font.draw "エンターを押せ！", 0, 0
+    Font.draw "エンターを押せ！", Vector.new(0, 0)
   end
 end
