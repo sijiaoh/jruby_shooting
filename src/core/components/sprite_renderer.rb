@@ -1,7 +1,7 @@
 require "./src/core/game_object/component"
 
 class SpriteRenderer < Component
-  attr_accessor :sprite, :offset
+  attr_accessor :sprite, :offset, :size
 
   attr_reader :texture
 
@@ -10,11 +10,14 @@ class SpriteRenderer < Component
     @texture = Texture.new path
     self.sprite = Gdx::Sprite.new texture.original
     self.offset = Vector.new
+    self.size = Vector.new 1, 1
   end
 
   def update
     super
-    sprite.set_position game_object.position.x, game_object.position.y
+    position = game_object.position + offset
+    sprite.set_position position.x, position.y
+    sprite.set_size size.x, size.y
   end
 
   def draw
