@@ -11,7 +11,9 @@ class Scene
     end
   end
 
-  def resize(width, height); end
+  def resize(_width, _height)
+    Camera.resize
+  end
 
   def render(delta)
     Time.delta = delta
@@ -40,8 +42,13 @@ class Scene
     Application.change_scene self
   end
 
+  def show
+    Camera.create unless Camera.created?
+  end
+
   def update
     game_objects.each { |game_object| game_object.create unless game_object.created? }
     game_objects.each(&:update)
+    Camera.update
   end
 end

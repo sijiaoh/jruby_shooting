@@ -9,7 +9,7 @@ class Font
     end
 
     def create
-      self.font = Gdx::BitmapFont.new
+      self.font = Gdx::BitmapFont.new true
     end
   end
 end

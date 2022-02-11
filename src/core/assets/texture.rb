@@ -2,10 +2,12 @@ class Texture
   attr_accessor :original
 
   def initialize(path)
-    self.original = Gdx::Texture.new Gdx::Gdx.files.internal(path)
+    texture = Gdx::Texture.new Gdx::Gdx.files.internal(path)
+    self.original = Gdx::TextureRegion.new texture
+    original.flip false, true
   end
 
   def dispose
-    original.dispose
+    original.get_texture.dispose
   end
 end
