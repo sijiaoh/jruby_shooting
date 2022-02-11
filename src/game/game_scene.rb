@@ -1,5 +1,5 @@
 class GameScene < Scene
-  def show
+  def create
     super
     Ship.new
   end

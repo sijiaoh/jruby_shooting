@@ -5,7 +5,7 @@ class Scene
 
   java_implements com.badlogic.gdx.Screen
 
-  %i[dispose hide pause resume show update draw].each do |method|
+  %i[dispose hide pause resume show update draw create].each do |method|
     define_method(method) do
       game_objects.each { |go| go.send(method) } if GameObject::COMPONENT_LIFECYCLES.include? method
     end
@@ -42,8 +42,12 @@ class Scene
     Application.change_scene self
   end
 
+  # Do not call game_objects create
+  def create; end
+
   def show
     Camera.create unless Camera.created?
+    create
   end
 
   def update
