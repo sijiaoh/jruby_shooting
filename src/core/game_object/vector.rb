@@ -1,9 +1,17 @@
 class Vector
-  attr_accessor :x, :y
+  attr_reader :x, :y
 
   def initialize(x = 0, y = 0)
     self.x = x.to_f
     self.y = y.to_f
+  end
+
+  def x=(value)
+    @x = value.to_f
+  end
+
+  def y=(value)
+    @y = value.to_f
   end
 
   %i[+ - * /].each do |operator|

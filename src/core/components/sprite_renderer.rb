@@ -29,6 +29,6 @@ class SpriteRenderer < Component
 
   def texture=(value)
     @texture = value
-    self.sprite.set_texture value.original
+    sprite.set_texture value.original
   end
 end
