@@ -1,5 +1,5 @@
 require "./src/core"
-require "./src/game_scene"
-require "./src/menu_scene"
+
+Dir["./src/*.rb"].sort.each { |f| require f }
 
 Application.run MenuScene.new
