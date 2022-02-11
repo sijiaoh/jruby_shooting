@@ -4,6 +4,7 @@ module Gdx
   import "com.badlogic.gdx.utils"
   import "com.badlogic.gdx.graphics"
   import "com.badlogic.gdx.graphics.g2d"
+  import "com.badlogic.gdx.graphics.g2d.freetype"
 
   Gdx = Java::ComBadlogicGdx::Gdx
   Texture = Java::ComBadlogicGdxGraphics::Texture

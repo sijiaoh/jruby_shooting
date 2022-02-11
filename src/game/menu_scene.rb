@@ -1,7 +1,11 @@
 class MenuScene < Scene
+  def update
+    super
+    GameScene.new.to_current if Gdx::Gdx.input.isKeyPressed(Gdx::Input::Keys::ENTER)
+  end
+
   def draw
     super
-    GameScene.new.to_current if Gdx::Gdx.input.isKeyPressed(Gdx::Input::Keys::SPACE)
-    Font.draw "Press enter!", 100, 100
+    Font.draw "エンターを押せ！", 0, 0
   end
 end

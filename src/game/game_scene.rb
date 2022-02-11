@@ -6,6 +6,6 @@ class GameScene < Scene
 
   def draw
     super
-    Font.draw "hello world", 100, 100
+    Font.draw "すべて倒せ！", 0, 0
   end
 end
