@@ -3,7 +3,7 @@ class PlayerMove < Component
 
   def create
     super
-    self.speed = 1
+    self.speed = 3
   end
 
   def update # rubocop:disable Metrics/AbcSize
