@@ -16,7 +16,8 @@ class GameObject
   end
 
   def position
-    parent.position + local_position
+    parent_position = parent&.position || Vector.new
+    parent_position + local_position
   end
 
   def parent=(value)
@@ -65,6 +66,11 @@ class GameObject
 
   def create
     @created = true
+  end
+
+  def update
+    components.each { |component| component.create unless component.created? }
+    components.each(&:update)
   end
 
   def dispose

@@ -3,6 +3,10 @@ require "./src/core/game_object/game_object"
 class Component
   attr_reader :game_object
 
+  def created?
+    @created ||= false
+  end
+
   def game_object=(value)
     return if game_object == value
 
@@ -13,6 +17,10 @@ class Component
 
   GameObject::COMPONENT_LIFECYCLES.each do |method|
     define_method(method) {} # Do nothing.
+  end
+
+  def create
+    @created = true
   end
 
   def dispose

@@ -10,6 +10,11 @@ class SpriteRenderer < Component
     self.offset = Vector.new
   end
 
+  def update
+    super
+    sprite.set_position game_object.position.x, game_object.position.y
+  end
+
   def draw
     super
     sprite.draw Batch.batch
