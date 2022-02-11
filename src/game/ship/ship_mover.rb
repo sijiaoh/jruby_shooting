@@ -1,4 +1,4 @@
-class PlayerMove < Component
+class ShipMover < Component
   attr_accessor :speed
 
   def create
