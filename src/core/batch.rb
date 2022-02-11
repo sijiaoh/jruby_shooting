@@ -1,5 +1,3 @@
-java_import com.badlogic.gdx.graphics.g2d.SpriteBatch
-
 class Batch
   class << self
     attr_accessor :batch
@@ -7,7 +5,7 @@ class Batch
     delegate :begin, :end, :dispose, to: :batch
 
     def create
-      self.batch = SpriteBatch.new
+      self.batch = Gdx::SpriteBatch.new
     end
   end
 end

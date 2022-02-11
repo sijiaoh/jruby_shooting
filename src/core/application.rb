@@ -1,15 +1,10 @@
-java_import com.badlogic.gdx.Game
-java_import com.badlogic.gdx.utils.ScreenUtils
-java_import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
-java_import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
-
-class Application < Game
+class Application < Gdx::Game
   class << self
     attr_accessor :instance, :current_scene
 
     def run(scene)
       self.current_scene = scene
-      Lwjgl3Application.new(Application.new, Lwjgl3ApplicationConfiguration.new)
+      Gdx::Lwjgl3Application.new(Application.new, Gdx::Lwjgl3ApplicationConfiguration.new)
     end
 
     def change_scene(scene)

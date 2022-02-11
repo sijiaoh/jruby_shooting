@@ -18,7 +18,7 @@ class Scene
 
     update
 
-    ScreenUtils.clear(0, 0, 0, 1)
+    Gdx::ScreenUtils.clear(0, 0, 0, 1)
     Batch.begin
     draw
     Batch.end

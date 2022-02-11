@@ -1,5 +1,3 @@
-java_import com.badlogic.gdx.graphics.g2d.BitmapFont
-
 class Font
   class << self
     attr_accessor :font
@@ -11,7 +9,7 @@ class Font
     end
 
     def create
-      self.font = BitmapFont.new
+      self.font = Gdx::BitmapFont.new
     end
   end
 end
