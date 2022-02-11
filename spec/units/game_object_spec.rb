@@ -1,13 +1,10 @@
 require "./src/core"
 
-class TestComponent < Component
-end
-
 describe GameObject do
   subject(:game_object) { described_class.new }
 
   let(:child) { described_class.new }
-  let(:test_component) { TestComponent.new }
+  let(:component) { Component.new }
 
   describe "#parent=" do
     it "changes #parent" do
@@ -47,16 +44,16 @@ describe GameObject do
   describe "#add_component" do
     it "adds component to components" do
       expect do
-        game_object.add_component test_component
+        game_object.add_component component
       end.to change { game_object.components.length }.by 1
     end
   end
 
   describe "#update" do
     it "calls components create" do
-      game_object.add_component test_component
+      game_object.add_component component
       game_object.update
-      expect(test_component).to be_created
+      expect(component).to be_created
     end
   end
 
