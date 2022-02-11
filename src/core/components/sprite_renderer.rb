@@ -1,11 +1,13 @@
 require "./src/core/game_object/component"
 
 class SpriteRenderer < Component
-  attr_accessor :sprite, :texture, :offset
+  attr_accessor :sprite, :offset
+
+  attr_reader :texture
 
   def initialize(path)
     super()
-    self.texture = Texture.new path
+    @texture = Texture.new path
     self.sprite = Gdx::Sprite.new texture.original
     self.offset = Vector.new
   end
@@ -23,5 +25,10 @@ class SpriteRenderer < Component
   def dispose
     texture.dispose
     super
+  end
+
+  def texture=(value)
+    @texture = value
+    self.sprite.set_texture value.original
   end
 end
