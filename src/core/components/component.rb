@@ -1,5 +1,3 @@
-require "./src/core/game_object/game_object"
-
 class Component
   attr_reader :game_object
 

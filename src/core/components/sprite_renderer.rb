@@ -1,5 +1,3 @@
-require "./src/core/game_object/component"
-
 class SpriteRenderer < Component
   attr_accessor :sprite, :offset, :size
 
