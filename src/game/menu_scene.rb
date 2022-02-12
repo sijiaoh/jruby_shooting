@@ -1,7 +1,7 @@
 class MenuScene < Scene
   def update
     super
-    GameScene.new.to_current if Gdx::Gdx.input.isKeyPressed(Gdx::Input::Keys::ENTER)
+    GameScene.new.to_current if Input.down? :enter
   end
 
   def draw

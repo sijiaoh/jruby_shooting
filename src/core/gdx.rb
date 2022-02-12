@@ -8,4 +8,5 @@ module Gdx
 
   Gdx = Java::ComBadlogicGdx::Gdx
   Texture = Java::ComBadlogicGdxGraphics::Texture
+  Input = Java::ComBadlogicGdx::Input
 end

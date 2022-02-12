@@ -10,10 +10,10 @@ class ShipMover < Component
     super
     position = game_object.position
 
-    position.y -= speed * Time.delta if Gdx::Gdx.input.isKeyPressed(Gdx::Input::Keys::W)
-    position.y += speed * Time.delta if Gdx::Gdx.input.isKeyPressed(Gdx::Input::Keys::S)
-    position.x -= speed * Time.delta if Gdx::Gdx.input.isKeyPressed(Gdx::Input::Keys::A)
-    position.x += speed * Time.delta if Gdx::Gdx.input.isKeyPressed(Gdx::Input::Keys::D)
+    position.y -= speed * Time.delta if Input.enter? :w
+    position.y += speed * Time.delta if Input.enter? :s
+    position.x -= speed * Time.delta if Input.enter? :a
+    position.x += speed * Time.delta if Input.enter? :d
 
     game_object.position = position
   end
