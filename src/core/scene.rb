@@ -3,8 +3,6 @@ class Scene
     Application.current_scene
   end
 
-  java_implements com.badlogic.gdx.Screen
-
   %i[dispose hide pause resume show update draw create].each do |method|
     define_method(method) do
       game_objects.each { |go| go.send(method) } if GameObject::COMPONENT_LIFECYCLES.include? method
