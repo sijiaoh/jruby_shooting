@@ -47,6 +47,7 @@ class Scene
 
   def show
     Camera.create unless Camera.created?
+    Physics.create
     create
   end
 
@@ -54,5 +55,11 @@ class Scene
     game_objects.each { |game_object| game_object.create unless game_object.created? }
     game_objects.each(&:update)
     Camera.update
+    Physics.update
+  end
+
+  def dispose
+    game_objects.each(&:dispose)
+    Physics.dispose
   end
 end

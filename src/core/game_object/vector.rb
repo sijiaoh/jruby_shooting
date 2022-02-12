@@ -22,4 +22,8 @@ class Vector
       t
     end
   end
+
+  def to_gdx_vector2
+    Gdx::Vector2.new x, y
+  end
 end
