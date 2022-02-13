@@ -3,7 +3,7 @@ class ShipMover < Component
 
   def create
     super
-    self.speed = 3
+    self.speed = 5
     @rigid_body = get_component RigidBody
   end
 

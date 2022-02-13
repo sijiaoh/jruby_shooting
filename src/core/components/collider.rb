@@ -47,7 +47,7 @@ class Collider < Component
 
   def sensor=(value)
     @sensor = value
-    @fixture.set_sensor value
+    @fixture&.set_sensor value
   end
 
   def create_fixture(body)
@@ -55,5 +55,6 @@ class Collider < Component
     fixture_def.shape = shape
     @fixture = body.create_fixture fixture_def
     @fixture.set_user_data id
+    @fixture.set_sensor sensor?
   end
 end

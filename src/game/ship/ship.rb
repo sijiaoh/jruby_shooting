@@ -10,5 +10,14 @@ class Ship < GameObject
     add_component rigid_body
 
     add_component BoxCollider.new
+
+    initialize_collider
+  end
+
+  private
+
+  def initialize_collider
+    collider = get_component Collider
+    collider.sensor = true
   end
 end

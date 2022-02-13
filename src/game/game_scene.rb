@@ -1,7 +1,9 @@
 class GameScene < Scene
   def create
     super
-    Ship.new
+    Stage.new
+    ship = Ship.new
+    ship.position = Vector.new 5, 5
   end
 
   def draw

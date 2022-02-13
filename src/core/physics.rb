@@ -6,8 +6,8 @@ class Physics
 
       return if a.nil? || b.nil?
 
-      a.game_object.begin_contact b
-      b.game_object.begin_contact a
+      a.game_object&.begin_contact b
+      b.game_object&.begin_contact a
     end
 
     def end_contact(contact)
@@ -16,8 +16,8 @@ class Physics
 
       return if a.nil? || b.nil?
 
-      a.game_object.end_contact b
-      b.game_object.end_contact a
+      a.game_object&.end_contact b
+      b.game_object&.end_contact a
     end
 
     def pre_solve(contact, old_manifold); end
