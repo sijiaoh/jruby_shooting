@@ -1,7 +1,19 @@
 class Physics
   class ContactListener
-    def begin_contact(contact); end
-    def end_contact(contact); end
+    def begin_contact(contact)
+      a = Collider.find_collider_by_fixture contact.fixture_a
+      b = Collider.find_collider_by_fixture contact.fixture_b
+      a.game_object.begin_contact b
+      b.game_object.begin_contact a
+    end
+
+    def end_contact(contact)
+      a = Collider.find_collider_by_fixture contact.fixture_a
+      b = Collider.find_collider_by_fixture contact.fixture_b
+      a.game_object.end_contact b
+      b.game_object.end_contact a
+    end
+
     def pre_solve(contact, old_manifold); end
     def post_solve(contact, impulse); end
   end

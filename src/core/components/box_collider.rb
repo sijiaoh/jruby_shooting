@@ -5,9 +5,7 @@ class BoxCollider < Collider
     super
     @shape = Gdx::PolygonShape.new
     self.size = Vector.new 1, 1
-  end
-
-  def update
+    # TODO: Support size change in runtime.
     @shape.set_as_box size.x, size.y
   end
 end

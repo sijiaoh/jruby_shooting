@@ -26,4 +26,8 @@ class Component
   def dispose
     self.game_object = nil
   end
+
+  def begin_contact(collider); end
+
+  def end_contact(collider); end
 end

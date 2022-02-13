@@ -91,6 +91,14 @@ class GameObject
     @disposed = true
   end
 
+  def begin_contact(collider)
+    components.each { |component| component.begin_contact collider }
+  end
+
+  def end_contact(collider)
+    components.each { |component| component.end_contact collider }
+  end
+
   private
 
   def parent_position

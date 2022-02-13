@@ -8,10 +8,7 @@ class RigidBody < Component
 
   def create
     super
-    @body_def = Gdx::BodyDef.new
-    @body_def.type = gdx_type
-    @body_def.position.set position.x, position.y
-    @body = Physics.world.create_body @body_def
+    @body = Physics.world.create_body body_def
     create_fixtures
   end
 
@@ -48,5 +45,12 @@ class RigidBody < Component
     game_object.get_components(Collider).each do |component|
       component.create_fixture body
     end
+  end
+
+  def body_def
+    body_def = Gdx::BodyDef.new
+    body_def.type = gdx_type
+    body_def.position.set position.x, position.y
+    body_def
   end
 end
