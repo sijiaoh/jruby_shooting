@@ -1,35 +1,28 @@
 class SpriteRenderer < Component
-  attr_accessor :sprite, :offset, :size
+  attr_accessor :offset, :size
 
-  attr_reader :texture
+  attr_reader :sprite
 
   def initialize(path)
     super()
-    @texture = Texture.new path
-    self.sprite = Gdx::Sprite.new texture.original
+    @sprite = Sprite.new path
     self.offset = Vector.new
     self.size = Vector.new 1, 1
   end
 
   def update
     super
-    position = game_object.position + offset
-    sprite.set_position position.x, position.y
-    sprite.set_size size.x, size.y
+    sprite.position = game_object.position + offset
+    sprite.size = size
   end
 
   def draw
     super
-    sprite.draw Batch.batch
+    sprite.draw
   end
 
   def dispose
-    texture.dispose
+    sprite.dispose
     super
-  end
-
-  def texture=(value)
-    @texture = value
-    sprite.set_texture value.original
   end
 end
