@@ -1,16 +1,29 @@
 class Physics
+  class ContactListener
+    def begin_contact(contact); end
+    def end_contact(contact); end
+    def pre_solve(contact, old_manifold); end
+    def post_solve(contact, impulse); end
+  end
+
   class << self
+    attr_accessor :velocity
     attr_reader :instance
 
-    delegate :update, :dispose, to: :instance
+    delegate :world, :update, :dispose, to: :instance
 
     def create
+      self.velocity ||= 9.8
       @instance = Physics.new
+      @instance.create
     end
   end
 
-  def initialize
-    @world = Gdx::World.new Vector.new(0, 9.8).to_gdx_vector2, true
+  attr_reader :world
+
+  def create
+    @world = Gdx::World.new Vector.new(0, self.class.velocity).to_gdx_vector2, true
+    @world.set_contact_listener ContactListener.new
   end
 
   def update

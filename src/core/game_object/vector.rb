@@ -1,4 +1,8 @@
 class Vector
+  def self.from_gdx_vector2(vector2)
+    new vector2.x, vector2.y
+  end
+
   attr_reader :x, :y
 
   def initialize(x = 0, y = 0)

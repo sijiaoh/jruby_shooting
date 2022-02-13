@@ -1,6 +1,8 @@
 class Component
   attr_reader :game_object
 
+  delegate :position, to: :game_object
+
   def created?
     @created ||= false
   end
