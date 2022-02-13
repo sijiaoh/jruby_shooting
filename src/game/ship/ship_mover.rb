@@ -4,17 +4,18 @@ class ShipMover < Component
   def create
     super
     self.speed = 3
+    @rigid_body = get_component RigidBody
   end
 
-  def update # rubocop:disable Metrics/AbcSize
+  def update
     super
-    position = game_object.position
+    direction = Vector.new
 
-    position.y -= speed * Time.delta if Input.enter? :w
-    position.y += speed * Time.delta if Input.enter? :s
-    position.x -= speed * Time.delta if Input.enter? :a
-    position.x += speed * Time.delta if Input.enter? :d
+    direction.y = -1 if Input.enter? :w
+    direction.y = 1 if Input.enter? :s
+    direction.x = -1 if Input.enter? :a
+    direction.x = 1 if Input.enter? :d
 
-    game_object.position = position
+    @rigid_body.move = direction.normalize * speed
   end
 end

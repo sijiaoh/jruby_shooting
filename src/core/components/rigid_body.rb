@@ -1,9 +1,12 @@
 class RigidBody < Component
+  attr_accessor :move
+
   attr_reader :body_type, :body
 
   def initialize
     super
     @body_type = :static
+    self.move = Vector.new
   end
 
   def create
@@ -14,6 +17,7 @@ class RigidBody < Component
 
   def update
     super
+    @body.set_linear_velocity move.x, move.y
     sync_position
   end
 
