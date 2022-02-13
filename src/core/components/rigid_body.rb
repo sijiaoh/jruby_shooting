@@ -1,9 +1,9 @@
 class RigidBody < Component
   attr_reader :body_type, :body
 
-  def initialize(body_type)
-    super()
-    @body_type = body_type
+  def initialize
+    super
+    @body_type = :static
   end
 
   def create
@@ -18,6 +18,11 @@ class RigidBody < Component
   def update
     super
     sync_position
+  end
+
+  def body_type=(type)
+    @body_type = type
+    @body&.type = gdx_type
   end
 
   private
@@ -41,9 +46,7 @@ class RigidBody < Component
 
   def create_fixtures
     game_object.get_components(Collider).each do |component|
-      fixture_def = Gdx::FixtureDef.new
-      fixture_def.shape = component.shape
-      @body.create_fixture fixture_def
+      component.create_fixture body
     end
   end
 end

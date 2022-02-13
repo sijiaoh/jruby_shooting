@@ -3,6 +3,9 @@ class Ship < GameObject
     super
     add_component ShipMover.new
     add_component SpriteRenderer.new("./assets/textures/ship.png")
-    add_component RigidBody.new :dynamic
+
+    rigid_body = RigidBody.new
+    rigid_body.body_type = :dynamic
+    add_component rigid_body
   end
 end
