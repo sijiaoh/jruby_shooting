@@ -59,6 +59,14 @@ class GameObject
     component.game_object = nil
   end
 
+  def get_component(klass)
+    components.find { |component| component.is_a? klass }
+  end
+
+  def get_components(klass)
+    components.filter { |component| component.is_a? klass }
+  end
+
   def created?
     @created ||= false
   end

@@ -1,10 +1,14 @@
 require "./src/core"
 
+class TestComponent < Component
+end
+
 describe GameObject do
   subject(:game_object) { described_class.new }
 
   let(:child) { described_class.new }
   let(:component) { Component.new }
+  let(:test_component) { TestComponent.new }
 
   describe "#parent=" do
     it "changes #parent" do
@@ -72,6 +76,22 @@ describe GameObject do
       game_object.position = Vector.new 1, 2
       child.position = Vector.new 3, 4
       expect({ x: child.local_position.x, y: child.local_position.y }).to eq x: 2, y: 2
+    end
+  end
+
+  describe "#get_component" do
+    it "should return first of specified class component" do
+      game_object.add_component test_component
+      game_object.add_component TestComponent.new
+      expect(game_object.get_component TestComponent).to eq test_component
+    end
+  end
+
+  describe "#get_components" do
+    it "should return all specified class components" do
+      game_object.add_component test_component
+      game_object.add_component TestComponent.new
+      expect(game_object.get_components(TestComponent).length).to eq 2
     end
   end
 end
