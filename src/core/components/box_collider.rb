@@ -8,4 +8,9 @@ class BoxCollider < Collider
     # TODO: Support size change in runtime.
     @shape.set_as_box size.x, size.y
   end
+
+  def dispose
+    super
+    @shape.dispose
+  end
 end

@@ -52,6 +52,10 @@ class GameObject
     component.game_object = self
   end
 
+  def add_components(components)
+    components.each { |component| add_component(component) }
+  end
+
   def remove_component(component)
     return if components.exclude? component
 

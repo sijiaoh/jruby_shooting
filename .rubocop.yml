@@ -25,3 +25,6 @@ Naming/MethodParameterName:
 Metrics/BlockLength:
   Exclude:
     - spec/**/*.rb
+
+Lint/UselessSetterCall:
+  Enabled: false

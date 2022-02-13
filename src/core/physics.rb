@@ -3,6 +3,9 @@ class Physics
     def begin_contact(contact)
       a = Collider.find_collider_by_fixture contact.fixture_a
       b = Collider.find_collider_by_fixture contact.fixture_b
+
+      return if a.nil? || b.nil?
+
       a.game_object.begin_contact b
       b.game_object.begin_contact a
     end
@@ -10,6 +13,9 @@ class Physics
     def end_contact(contact)
       a = Collider.find_collider_by_fixture contact.fixture_a
       b = Collider.find_collider_by_fixture contact.fixture_b
+
+      return if a.nil? || b.nil?
+
       a.game_object.end_contact b
       b.game_object.end_contact a
     end

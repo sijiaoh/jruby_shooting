@@ -26,6 +26,11 @@ class RigidBody < Component
     @body&.type = gdx_type
   end
 
+  def dispose
+    super
+    @body.dispose
+  end
+
   private
 
   def gdx_type
