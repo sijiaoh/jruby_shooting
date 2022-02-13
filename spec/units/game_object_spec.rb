@@ -80,15 +80,15 @@ describe GameObject do
   end
 
   describe "#get_component" do
-    it "should return first of specified class component" do
+    it "returns first of specified class component" do
       game_object.add_component test_component
       game_object.add_component TestComponent.new
-      expect(game_object.get_component TestComponent).to eq test_component
+      expect(game_object.get_component(TestComponent)).to eq test_component
     end
   end
 
   describe "#get_components" do
-    it "should return all specified class components" do
+    it "returns all specified class components" do
       game_object.add_component test_component
       game_object.add_component TestComponent.new
       expect(game_object.get_components(TestComponent).length).to eq 2
