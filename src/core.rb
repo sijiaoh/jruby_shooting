@@ -8,4 +8,5 @@ Dir["./src/core/*.rb"].sort.each { |f| require f }
 Dir["./src/core/game_object/**/*.rb"].sort.each { |f| require f }
 
 require "./src/core/components/component"
+require "./src/core/components/collider"
 Dir["./src/core/**/*.rb"].sort.each { |f| require f }

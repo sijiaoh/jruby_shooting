@@ -7,5 +7,7 @@ class Ship < GameObject
     rigid_body = RigidBody.new
     rigid_body.body_type = :dynamic
     add_component rigid_body
+
+    add_component BoxCollider.new
   end
 end
