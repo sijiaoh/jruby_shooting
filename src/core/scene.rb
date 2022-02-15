@@ -4,7 +4,7 @@ class Scene
   end
 
   %i[dispose hide pause resume show update draw create].each do |method|
-    define_method(method) do
+    define_method method do
       game_objects.each { |go| go.send(method) } if GameObject::COMPONENT_LIFECYCLES.include? method
     end
   end
@@ -18,7 +18,7 @@ class Scene
 
     update
 
-    Gdx::ScreenUtils.clear(0, 0, 0, 1)
+    Gdx::ScreenUtils.clear 0, 0, 0, 1
     Batch.begin
     draw
     Batch.end

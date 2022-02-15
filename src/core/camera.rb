@@ -18,7 +18,7 @@ class Camera
 
     def update
       original.update
-      Batch.batch.set_projection_matrix(original.combined)
+      Batch.batch.set_projection_matrix original.combined
     end
 
     def resize

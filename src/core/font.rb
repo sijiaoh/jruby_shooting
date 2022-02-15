@@ -8,11 +8,11 @@ class Font
     end
 
     def create
-      ttf = Gdx::Gdx.files.internal("./assets/fonts/misaki_gothic.ttf")
+      ttf = Gdx::Gdx.files.internal "./assets/fonts/misaki_gothic.ttf"
       self.generator = Gdx::FreeTypeFontGenerator.new ttf
 
       param = Gdx::FreeTypeFontGenerator::FreeTypeFontParameter.new
-      param.characters = File.read("./assets/fonts/japanese-full.txt", encoding: Encoding::UTF_8)
+      param.characters = File.read "./assets/fonts/japanese-full.txt", encoding: Encoding::UTF_8
       param.flip = true
 
       self.original = generator.generate_font param

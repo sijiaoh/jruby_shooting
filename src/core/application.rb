@@ -4,7 +4,7 @@ class Application < Gdx::Game
 
     def run(scene)
       self.current_scene = scene
-      Gdx::Lwjgl3Application.new(Application.new, Gdx::Lwjgl3ApplicationConfiguration.new)
+      Gdx::Lwjgl3Application.new Application.new, Gdx::Lwjgl3ApplicationConfiguration.new
     end
 
     def change_scene(scene)
