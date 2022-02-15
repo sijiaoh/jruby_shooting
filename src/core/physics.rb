@@ -28,7 +28,7 @@ class Physics
     attr_accessor :velocity
     attr_reader :instance
 
-    delegate :world, :update, :dispose, to: :instance
+    delegate_missing_to :instance
 
     def create
       self.velocity ||= 9.8

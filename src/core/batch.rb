@@ -2,7 +2,7 @@ class Batch
   class << self
     attr_accessor :batch
 
-    delegate :begin, :end, :dispose, to: :batch
+    delegate_missing_to :batch
 
     def create
       self.batch = Gdx::SpriteBatch.new
