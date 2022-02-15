@@ -40,7 +40,7 @@ class Physics
   attr_reader :world
 
   def create
-    @world = Gdx::World.new Vector.new(0, self.class.velocity).to_gdx_vector2, true
+    @world = Gdx::World.new Vector.new(0, self.class.velocity), true
     @world.set_contact_listener ContactListener.new
   end
 

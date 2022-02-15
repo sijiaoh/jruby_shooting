@@ -1,23 +1,4 @@
-class Vector
-  def self.from_gdx_vector2(vector2)
-    new vector2.x, vector2.y
-  end
-
-  attr_reader :x, :y
-
-  def initialize(x = 0, y = 0)
-    self.x = x.to_f
-    self.y = y.to_f
-  end
-
-  def x=(value)
-    @x = value.to_f
-  end
-
-  def y=(value)
-    @y = value.to_f
-  end
-
+class Vector < Gdx::Vector2
   %i[+ - * /].each do |operator|
     define_method operator do |other|
       t = self.class.new
@@ -32,12 +13,8 @@ class Vector
     end
   end
 
-  def to_gdx_vector2
-    Gdx::Vector2.new x, y
-  end
-
   def normalize
-    self.class.from_gdx_vector2 to_gdx_vector2.nor
+    nor
   end
 
   def normalize!

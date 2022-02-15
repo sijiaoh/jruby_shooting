@@ -47,7 +47,7 @@ class RigidBody < Component
   end
 
   def sync_position
-    game_object.position = Vector.from_gdx_vector2 @body.get_position
+    game_object.position = Vector.new @body.get_position
   end
 
   def create_fixtures
