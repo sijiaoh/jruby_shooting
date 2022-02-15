@@ -19,6 +19,10 @@ Style/Documentation:
 Style/EndOfLine:
   Enabled: false
 
+Style/MethodCallWithArgsParentheses:
+  Enabled: true
+  EnforcedStyle: omit_parentheses
+
 Naming/MethodParameterName:
   MinNameLength: 1
 
