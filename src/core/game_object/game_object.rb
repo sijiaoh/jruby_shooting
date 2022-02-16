@@ -50,6 +50,8 @@ class GameObject
 
     components << component
     component.game_object = self
+
+    component
   end
 
   def add_components(components)
@@ -61,6 +63,8 @@ class GameObject
 
     components.delete component
     component.game_object = nil
+
+    component
   end
 
   def get_component(klass)
