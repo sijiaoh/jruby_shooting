@@ -22,6 +22,9 @@ class Scene
     Batch.begin
     draw
     Batch.end
+
+    # TODO: Debug mode only.
+    Gdx::Box2DDebugRenderer.new.render Physics.world, Camera.combined
   end
 
   def game_objects

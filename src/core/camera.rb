@@ -4,6 +4,8 @@ class Camera
   class << self
     attr_accessor :original
 
+    delegate_missing_to :original
+
     def created?
       @created ||= false
     end
@@ -18,12 +20,12 @@ class Camera
 
     def update
       original.update
-      Batch.batch.set_projection_matrix original.combined
+      Batch.batch.set_projection_matrix combined
     end
 
     def resize
       screen_pixel = self.screen_pixel
-      original.set_to_ortho true, screen_pixel.x, screen_pixel.y
+      set_to_ortho true, screen_pixel.x, screen_pixel.y
     end
 
     def screen_pixel
