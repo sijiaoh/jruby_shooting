@@ -89,7 +89,10 @@ class GameObject
   end
 
   def dispose
-    components.each(&:dispose)
+    return if disposed?
+
+    components.first.dispose while components.present?
+    children.first.dispose while children.present?
     self.parent = nil
     Scene.current&.remove_game_object self
     @disposed = true
