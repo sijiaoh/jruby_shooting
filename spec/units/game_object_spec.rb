@@ -62,6 +62,34 @@ describe GameObject do
   end
 
   describe "#dispose" do
+    dispose_count = 0
+    dispose_counter_class = Class.new Component do
+      define_method :dispose do
+        dispose_count += 1
+      end
+    end
+
+    before { dispose_count = 0 }
+
+    context "when before call update" do
+      it "call all component's dispose" do
+        component_num = 3
+        game_object.add_components Array.new(component_num) { dispose_counter_class.new }
+        game_object.dispose
+        expect(dispose_count).to eq 0
+      end
+    end
+
+    context "when after called update" do
+      it "call all component's dispose" do
+        component_num = 3
+        game_object.add_components Array.new(component_num) { dispose_counter_class.new }
+        game_object.update
+        game_object.dispose
+        expect(dispose_count).to eq component_num
+      end
+    end
+
     it "removes self from parent's components" do
       child.parent = game_object
       expect do
