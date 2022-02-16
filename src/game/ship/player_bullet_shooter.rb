@@ -1,14 +1,12 @@
-class BulletShooter < Component
+class PlayerBulletShooter < Component
   def update
     super
-    shoot
+    shoot if Input.down? :space
   end
 
   private
 
   def shoot
-    return unless Input.down? :space
-
     bullet = Bullet.new
     bullet.position = position
   end
