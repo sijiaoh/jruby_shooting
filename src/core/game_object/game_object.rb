@@ -12,7 +12,7 @@ class GameObject
 
   COMPONENT_LIFECYCLES = %i[create update draw dispose].freeze
   COMPONENT_LIFECYCLES.each do |f|
-    define_method(f) { components.each { |c| c.send f } }
+    define_method(f) { components_call_if_created f }
   end
 
   def position
@@ -84,15 +84,15 @@ class GameObject
   end
 
   def update
-    components.each { |component| component.create unless component.created? }
-    components.each(&:update)
+    components.dup.each { |component| component.create unless component.created? }
+    components_call_if_created :update
   end
 
   def dispose
     return if disposed?
 
-    components.first.dispose while components.present?
-    children.first.dispose while children.present?
+    components_call_if_created :dispose
+    children.dup.each(&:dispose)
     self.parent = nil
     Scene.current&.remove_game_object self
     @disposed = true
@@ -110,5 +110,9 @@ class GameObject
 
   def parent_position
     parent&.position || Vector.new
+  end
+
+  def components_call_if_created(method)
+    components.dup.each { |component| component.send method if component.created? }
   end
 end

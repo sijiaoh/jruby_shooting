@@ -5,7 +5,7 @@ class Scene
 
   %i[dispose hide pause resume show update draw create].each do |method|
     define_method method do
-      game_objects.each { |go| go.send(method) } if GameObject::COMPONENT_LIFECYCLES.include? method
+      game_objects_call_if_created method if GameObject::COMPONENT_LIFECYCLES.include? method
     end
   end
 
@@ -53,14 +53,20 @@ class Scene
   end
 
   def update
-    game_objects.each { |game_object| game_object.create unless game_object.created? }
-    game_objects.each(&:update)
+    game_objects.dup.each { |game_object| game_object.create unless game_object.created? }
+    game_objects_call_if_created :update
     Camera.update
     Physics.update
   end
 
   def dispose
-    game_objects.each(&:dispose)
+    game_objects_call_if_created :dispose
     Physics.dispose
+  end
+
+  private
+
+  def game_objects_call_if_created(method)
+    game_objects.dup.each { |game_object| game_object.send method if game_object.created? }
   end
 end
