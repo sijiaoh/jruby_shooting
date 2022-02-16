@@ -1,13 +1,11 @@
-class Texture
-  attr_accessor :original
-
+class Texture < Gdx::TextureRegion
   def initialize(path)
     texture = Gdx::Texture.new Gdx::Gdx.files.internal(path)
-    self.original = Gdx::TextureRegion.new texture
-    original.flip false, true
+    super texture
+    flip false, true
   end
 
   def dispose
-    original.get_texture.dispose
+    texture.dispose
   end
 end

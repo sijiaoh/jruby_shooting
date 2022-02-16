@@ -1,9 +1,8 @@
-class Sprite
-  attr_reader :texture, :original, :position, :size
+class Sprite < Gdx::Sprite
+  attr_reader :position, :size
 
   def initialize(path)
-    @texture = Texture.new path
-    @original = Gdx::Sprite.new texture.original
+    super Texture.new path
   end
 
   def dispose
@@ -11,16 +10,16 @@ class Sprite
   end
 
   def draw
-    original.draw Batch.batch
+    super Batch.batch
   end
 
   def position=(value)
     @position = value
-    original.set_position position.x, position.y
+    set_position position.x, position.y
   end
 
   def size=(value)
     @size = value
-    original.set_size size.x, size.y
+    set_size size.x, size.y
   end
 end
