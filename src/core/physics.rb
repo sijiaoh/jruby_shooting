@@ -6,8 +6,7 @@ class Physics
 
       return if a.nil? || b.nil?
 
-      a.game_object&.begin_contact b
-      b.game_object&.begin_contact a
+      Physics.add_begin_contacted a, b
     end
 
     def end_contact(contact)
@@ -16,8 +15,7 @@ class Physics
 
       return if a.nil? || b.nil?
 
-      a.game_object&.end_contact b
-      b.game_object&.end_contact a
+      Physics.add_end_contacted a, b
     end
 
     def pre_solve(contact, old_manifold); end
@@ -39,16 +37,37 @@ class Physics
 
   attr_reader :world
 
+  delegate_missing_to :world
+
   def create
     @world = Gdx::World.new Vector.new(0, self.class.velocity), true
     @world.set_contact_listener ContactListener.new
+    @begin_contacteds = []
+    @end_contacteds = []
   end
 
   def update
     @world.step Time.delta, 6, 2
+
+    @begin_contacteds.each do |a, b|
+      a.game_object&.begin_contact b
+      b.game_object&.begin_contact a
+    end
+    @end_contacteds.each do |a, b|
+      a.game_object&.end_contact b
+      b.game_object&.end_contact a
+    end
   end
 
   def dispose
     @world.dispose
+  end
+
+  def add_begin_contacted(a, b)
+    @begin_contacteds << [a, b]
+  end
+
+  def add_end_contacted(a, b)
+    @end_contacteds << [a, b]
   end
 end

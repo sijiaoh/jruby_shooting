@@ -11,24 +11,24 @@ class RigidBody < Component
 
   def create
     super
-    @body = Physics.world.create_body body_def
+    @body = Physics.create_body body_def
     create_fixtures
   end
 
   def update
     super
-    @body.set_linear_velocity move.x, move.y
+    body.set_linear_velocity move.x, move.y
     sync_position
   end
 
   def body_type=(type)
     @body_type = type
-    @body&.type = gdx_type
+    body&.type = gdx_type
   end
 
   def dispose
+    Physics.destroy_body body
     super
-    @body.dispose
   end
 
   private
@@ -47,7 +47,7 @@ class RigidBody < Component
   end
 
   def sync_position
-    game_object.position = Vector.new @body.get_position
+    game_object.position = Vector.new body.get_position
   end
 
   def create_fixtures
